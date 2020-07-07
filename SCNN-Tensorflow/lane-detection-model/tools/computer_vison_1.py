@@ -88,41 +88,44 @@ def fileDialog():
             file_exist.write('0 ')
             file_exist.close()
                 
+def vi_DL(filename):
+            file=r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\data\CULane\video.txt"
+            file2=open(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\data\CULane\list\test.txt","w")
+            file3=open(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\demo_file\test_img.txt","w")
+            path=filename[:-4]
+            #file="../"+path[86:]
+            try:
+                os.makedirs(path)
+                #print("Directory ",path," Created")
+            except FileExistsError:
+                    pass
+                    print("Directory ",path," already exists")
+            cut_video(filename,path,file)
+            with open(file,'r') as f:
+                for line in f:
+                    if line !="\n":
+                        #global v
+                        #v=line[-20:-16]
+                        image_name="../"+line[86:]
+                        file3.write(image_name)
+                        #print(image_name)
+                        image_name2=line[97:]
+                        file2.writelines(image_name2)
+                        #print(image_name2)
+            sleep(5)        
 
 def fileDialog2():
-        l=Button(win1,text="dl",height=2,width=15,font=(25),bd=15,bg="#ff0000",fg="black",command=DL)
-        file=r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\data\CULane\video.txt"
-        file2=open(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\data\CULane\list\test.txt","w")
-        file3=open(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\demo_file\test_img.txt","w")
-        filename = filedialog.askopenfilename( )
-        path=filename[:-4]
-        #file="../"+path[86:]
-        try:
-            os.makedirs(path)
-            #print("Directory ",path," Created")
-        except FileExistsError:
-            pass
-            print("Directory ",path," already exists")
-        cut_video(filename,path,file)
-        with open(file,'r') as f:
-            for line in f:
-              if line !="\n":
-                #global v
-                #v=line[-20:-16]
-                image_name="../"+line[86:]
-                file3.write(image_name)
-                #print(image_name)
-                image_name2=line[97:]
-                file2.writelines(image_name2)
-                #print(image_name2)
-        sleep(5)        
-        l.place(x=500,y=500)
-        win1.pack( fill=BOTH, expand=True)
-
-  
+        
+        filename = filedialog.askopenfilename( filetype =
+        (("jpg files","*.mp4"),("all files","*.*")) )
+        if filename!="":
+            vi_DL(filename)
+            DL()
+x,y,z,w=t.getting()  
 def DL():
   
-    t.init()
+    #x,y,z,w=t.getting()
+    t.init(x,y,z,w)
     import main1 as m 
     #sleep(20)
     #from main1 import * 
@@ -130,33 +133,35 @@ def DL():
     path2=glob.glob(p+"\*.jpg")
     create_video(path2)
             
-        
+def im_DL(filename):
+
+            file=open(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\demo_file\test_img.txt","w")
+            image_name="../"+filename[86:]
+            image_name2=filename[97:]
+            global name1
+            name1=filename[-8:]
+            file2=open(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\data\CULane\list\test.txt","w")
+            file.write(image_name)
+            file2.writelines(image_name2)
+
+
+       
 def fileDialog3():
-        
         filename = filedialog.askopenfilename( filetype =
         (("jpg files","*.jpg"),("all files","*.*")) )
-        file=open(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\demo_file\test_img.txt","w")
-        image_name="../"+filename[86:]
-        image_name2=filename[97:]
-        file2=open(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\data\CULane\list\test.txt","w")
-        print(image_name2)
-        print(image_name)
-        file.write(image_name)
-        file2.writelines(image_name2)
-        l=Button(win1,text="dl",height=2,width=15,font=(25),bd=15,bg="#ff0000",fg="black",command=DLL)
-        sleep(5)
-        #import test_lanenet as t
-        l.place(x=500,y=500)
-        win1.pack( fill=BOTH, expand=True)
-        #t.init()
-
-def DLL():
-  
-    t.init()
-    import main1 as m 
-
-    
+        if filename!="":
+            im_DL(filename)
+            sleep(5)
+            DLL()
+            
         
+def DLL():
+    t.init(x,y,z,w)
+    import main1 as m 
+    dl=r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\Visual_output\Dl\image\\"+name1
+    img=cv2.imread(dl)
+    plt.imshow(img)  
+    
 def clearFrame(frame):
     # destroy all widgets from frame
     for widget in frame.winfo_children():
