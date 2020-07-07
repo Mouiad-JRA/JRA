@@ -24,14 +24,14 @@ def draw_on_original(undist, left_fitx, right_fitx, ploty, Minv):
     pts_right = np.array([np.flipud(np.transpose(np.vstack([right_fitx, ploty])))])
     pts = np.hstack((pts_left, pts_right))
     # Draw the lane with low confidence region in yollow
-    cv2.fillPoly(color_warp, np.int_([pts]), (255, 255,0))
+    cv2.fillPoly(color_warp, np.int_([pts]), (0, 255,255))
     # confidence region in green
     start_width = int(undist.shape[0] * 55.5 / 100.0)
     pts_left = np.array([np.transpose(np.vstack([left_fitx[start_width:], ploty[start_width:]]))])
     pts_right = np.array([np.flipud(np.transpose(np.vstack([right_fitx[start_width:], ploty[start_width:]])))])
     pts = np.hstack((pts_left, pts_right))
     # Draw the lane onto the warped blank image
-    cv2.fillPoly(color_warp, np.int_([pts]), (0, 0, 255))
+    cv2.fillPoly(color_warp, np.int_([pts]), (255, 0, 0))
     # Warp the blank back to original image space using inverse perspective matrix (Minv)
     newwarp = cv2.warpPerspective(color_warp, Minv, (undist.shape[1], undist.shape[0]))
     # Combine the result with the original image

@@ -1,8 +1,8 @@
 
 from tkinter import *
-import imageio
+#import imageio
 from tkinter import ttk
-from PIL import Image, ImageTk
+#from PIL import Image, ImageTk
 from tkinter import filedialog
 import glob
 import cv2
@@ -12,7 +12,8 @@ import cv2
 import numpy as np
 import test_lanenet as t
 from time import sleep
-
+import CVvsDL as CD
+import matplotlib.pyplot as plt
 def create_video(path):
     img_array = []
     for filename in path:
@@ -131,7 +132,7 @@ def DL():
             
         
 def fileDialog3():
-        l=Button(win1,text="dl",height=2,width=15,font=(25),bd=15,bg="#ff0000",fg="black",command=DLL)
+        
         filename = filedialog.askopenfilename( filetype =
         (("jpg files","*.jpg"),("all files","*.*")) )
         file=open(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\demo_file\test_img.txt","w")
@@ -142,13 +143,12 @@ def fileDialog3():
         print(image_name)
         file.write(image_name)
         file2.writelines(image_name2)
-  
+        l=Button(win1,text="dl",height=2,width=15,font=(25),bd=15,bg="#ff0000",fg="black",command=DLL)
         sleep(5)
         #import test_lanenet as t
         l.place(x=500,y=500)
         win1.pack( fill=BOTH, expand=True)
         #t.init()
-        DLL()
 
 def DLL():
   
@@ -240,37 +240,19 @@ def switch2():
 def image():
         filename = filedialog.askopenfilename( filetype =
         (("jpg files","*.jpg"),("all files","*.*")) )
-        #print(filename)
-        for img_name in glob.glob(filename):
-            img = cv2.imread(img_name)
-            init_lines(img.shape[0])
-            img2,L,R = pipeline1(img)
-            image_name=img_name[-9:]
-            img2=cv2.cvtColor(img2, cv2.COLOR_RGB2BGR)
-            plt.figure(figsize = (10,5))
-            plt.imshow(img2)
-            plt.imsave(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\Visual_output\cv\image\\"+image_name+".jpg",img2)
-            parent_path = os.path.dirname(filename)[98:]
-            parent_path = parent_path.replace('/', '\\')
-            directory = os.path.join(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\experiments\predicts", 'vgg_SCNN_DULR_w9', parent_path)
-            #print(directory)
-            if not os.path.exists(directory):
-                    os.makedirs(directory)
-            file_exist = open(os.path.join(directory, os.path.basename(filename)[:-3] + 'exist.txt'), 'w')
-            for cnt_img in range(1):
-              cv2.imwrite(os.path.join(directory, os.path.basename(filename)[:-4] + '_' + str(cnt_img + 2) + '_avg.png'),L)
-              cv2.imwrite(os.path.join(directory, os.path.basename(filename)[:-4] + '_' + str(cnt_img + 3) + '_avg.png'),R)
-            file_exist.write('0 ')
-            if ones_or_zeros_for_Right()==True:
-                file_exist.write('1 ')
-            else:
-                file_exist.write('0 ')
-            if ones_or_zeros_for_Left()==True:
-                file_exist.write('1 ')
-            else:
-                file_exist.write('0 ')
-            file_exist.write('0 ')
-            file_exist.close()
+        C,D=CD.comper(filename)
+        DLL()
+        CV=cv2.imread(C)
+        DL=cv2.imread(D)
+        fig=plt.figure(figsize=(9,5))
+        ax=fig.add_subplot(1, 2, 1)
+        ax.set_title('Computer Vision')
+        plt.imshow(CV)
+        ax1=fig.add_subplot(1, 2, 2)
+        ax1.set_title('Deep Learning')
+        plt.imshow(DL)
+        plt.show()
+        
     
 def choose():
     clearFrame(win)

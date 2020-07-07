@@ -25,7 +25,7 @@ def save(original,path22):
 
         for i  in range(0 , len(x)-1):
             #print(x[i] , y[i])
-            cv2.line(original, (int(float(x[i])), int(y[i])),(int(float(x[i+1])), int(y[i+1])) , (0,255,0), 8)
+            cv2.line(original, (int(float(x[i])), int(y[i])),(int(float(x[i+1])), int(y[i+1])) , (255,0,0), 8)
     #print("--------------------------------------------------------------------------")
     
     return original
@@ -134,9 +134,13 @@ for i in range(num):
                     fp.write('\n')
             fp.close()
             if j==3 and count==1:
+              global ime
               ime=save(img,save_name)
               plt.imsave(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\Visual_output\Dl\image\\"+image_name,ime)
-              cv2.imshow("image" , ime)
+              #fig=plt.figure(figsize=(8, 8))
+              #fig.add_subplot(1, 2, 1)
+              #plt.imshow(img)
+              #plt.show()
             elif j==3 and count>1:
                 ime=save(img,save_name)
                 #cv2.imwrite(path11+"/"+image_name,ime)
