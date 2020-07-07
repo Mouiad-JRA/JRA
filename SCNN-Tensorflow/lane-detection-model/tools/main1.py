@@ -14,7 +14,6 @@ import getLane
 import cv2
 # Code to generate lane coordinates from probablity maps.
 def save(original,path22):
-    mask = np.zeros_like(original).astype(np.unicode)
     f = open(path22, "r")
     for line in f :
         x = []

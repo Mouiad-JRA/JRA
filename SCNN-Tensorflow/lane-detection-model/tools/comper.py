@@ -25,12 +25,12 @@ def draw(original,path22):
     cv2.waitKey(0)
     f.close()
     return original
-output2=open(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\prob2lines\output\vgg_SCNN_DULR_w9\driver_100_30frame\05250510_0307.MP4\00480.lines.txt",'r')
-label=open(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\data\CULane\driver_100_30frame\05250510_0307.MP4\00480.lines.txt",'r')
-img=cv2.imread(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\data\CULane\driver_100_30frame\05250510_0307.MP4\00480.jpg")
-output1=r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\prob2lines\output\vgg_SCNN_DULR_w9\driver_100_30frame\00480.lines.txt"
-label1=r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\data\CULane\driver_100_30frame\05250510_0307.MP4\00480.lines.txt"
-Scnn=r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\prob2lines\output\vgg_SCNN_DULR_w9\driver_100_30frame\05250510_0307.MP4\00480.lines.txt"
+output2=open(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\prob2lines\output\vgg_SCNN_DULR_w9\driver_100_30frame\05250541_0314.MP4\00510.lines.txt",'r')
+label=open(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\data\CULane\driver_100_30frame\05250541_0314.MP4\00510.lines.txt",'r')
+img=cv2.imread(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\data\CULane\driver_100_30frame\05250541_0314.MP4\00510.jpg")
+output1=r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\prob2lines\output\vgg_SCNN_DULR_w9\driver_100_30frame\00510.lines.txt"
+label1=r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\data\CULane\driver_100_30frame\05250541_0314.MP4\00510.lines.txt"
+Scnn=r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\prob2lines\output\vgg_SCNN_DULR_w9\driver_100_30frame\05250541_0314.MP4\00510.lines.txt"
 #draw(img,output1)
 #draw(img,label1)
 def line2lists(output):

@@ -1,6 +1,6 @@
 file: results.txt
-tp: 4 fp: 0 fn: 0
-precision: 1
-recall: 1
-Fmeasure: 1
+tp: 1 fp: 2 fn: 3
+precision: 0.333333
+recall: 0.25
+Fmeasure: 0.285714
 

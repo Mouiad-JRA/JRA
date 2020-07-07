@@ -64,7 +64,7 @@ def fileDialog():
             img2=cv2.cvtColor(img2, cv2.COLOR_RGB2BGR)
             plt.figure(figsize = (10,5))
             plt.imshow(img2)
-            cv2.imwrite(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\Visual_output\cv\image\\"+image_name+".jpg",img2)
+            plt.imsave(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\Visual_output\cv\image\\"+image_name+".jpg",img2)
             parent_path = os.path.dirname(filename)[98:]
             parent_path = parent_path.replace('/', '\\')
             directory = os.path.join(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\experiments\predicts", 'vgg_SCNN_DULR_w9', parent_path)
@@ -148,7 +148,7 @@ def fileDialog3():
         l.place(x=500,y=500)
         win1.pack( fill=BOTH, expand=True)
         #t.init()
-
+        DLL()
 
 def DLL():
   
@@ -171,17 +171,25 @@ def BACK():
     root.iconbitmap(r'C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\GUI\algorithm.ico')
     root.geometry("1200x700")
     root.configure(background="black")
+
+
     p3 = PhotoImage(file=r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\GUI\111111.png")
     global win
     win=Frame(root)
     lm=Label(win,image=p3)
     lm.pack( fill=BOTH, expand=True)
+
+
+    p2 = PhotoImage(file=r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\GUI\1212.png")
+    p1 = PhotoImage(file=r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\GUI\3333.png")
     b1=Button(lm,text="Computer Vision",height=2,width=15,compound=CENTER,font=('TimesNewRoman', 14, 'bold'),bd=10,bg="SteelBlue1",fg="black",command=switch)
     b2=Button(lm,text="Deep Learning",height=2,width=15,compound=CENTER,font=('TimesNewRoman', 14, 'bold'),bd=10,bg="SteelBlue1",fg="black",command=switch2)
+    b4=Button(lm,text="Compare",height=2,width=15,compound=CENTER,font=('TimesNewRoman', 14, 'bold'),bd=10,bg="SteelBlue1",fg="black",command=choose)
     b1.place(x=200,y=300)
     b2.place(x=800,y=300)
+    b4.place(x=500,y=400)
     b3=Button(lm,text="Exit",command=root.destroy,height=2,width=15,font=('TimesNewRoman', 14, 'bold'),bd=15,bg="SteelBlue4",fg="black")
-    b3.place(x=475,y=500)
+    b3.place(x=950,y=600)
     win.pack(fill=BOTH, expand=True)
     root.resizable(0, 0)
     root.mainloop()
@@ -199,10 +207,10 @@ def switch():
     
     b4=Button(llm,text="Image",height=2,width=15,compound=CENTER,font=(25),bd=20,bg="black",fg="ivory2",command=fileDialog)
     b7=Button(llm,text="Video",height=2,width=15,compound=CENTER,font=(25),bd=20,bg="black",fg="ivory2",command=fileDialog1)
-    b4.place(x=500,y=200)
-    b7.place(x=800,y=200)
+    b4.place(x=400,y=200)
+    b7.place(x=650,y=200)
     b5=Button(llm,text="Exit",command=root.destroy,height=2,width=15,font=(25),bd=15,bg="#ff0000",fg="ivory2")
-    b5.place(x=1000,y=600)
+    b5.place(x=1000,y=610)
     b6=Button(llm,text="Back",command=BACK,height=2,width=15,font=(25),bd=15,bg="blue",fg="ivory2")
     b6.place(x=0,y=0)
     llm.pack( fill=BOTH, expand=True)
@@ -221,15 +229,69 @@ def switch2():
    
     b4=Button(llm,text="Image",height=2,width=15,compound=CENTER,font=(25),bd=10,bg="white",fg="black",command=fileDialog3)
     b1=Button(llm,text="Video",height=2,width=15,compound=CENTER,font=(25),bd=10,bg="white",fg="black",command=fileDialog2)
-    b4.place(x=500,y=200)
-    b1.place(x=700,y=200)
+    b4.place(x=400,y=200)
+    b1.place(x=650,y=200)
+    b5=Button(llm,text="Exit",command=root.destroy,height=2,width=15,font=(25),bd=15,bg="#ff0000",fg="black")
+    b5.place(x=1000,y=610)
+    b6=Button(llm,text="Back",command=BACK,height=2,width=15,font=(25),bd=15,bg="blue",fg="ivory2")
+    b6.place(x=0,y=0)
+    llm.pack( fill=BOTH, expand=True)
+    win1.pack(fill=BOTH, expand=True)
+def image():
+        filename = filedialog.askopenfilename( filetype =
+        (("jpg files","*.jpg"),("all files","*.*")) )
+        #print(filename)
+        for img_name in glob.glob(filename):
+            img = cv2.imread(img_name)
+            init_lines(img.shape[0])
+            img2,L,R = pipeline1(img)
+            image_name=img_name[-9:]
+            img2=cv2.cvtColor(img2, cv2.COLOR_RGB2BGR)
+            plt.figure(figsize = (10,5))
+            plt.imshow(img2)
+            plt.imsave(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\Visual_output\cv\image\\"+image_name+".jpg",img2)
+            parent_path = os.path.dirname(filename)[98:]
+            parent_path = parent_path.replace('/', '\\')
+            directory = os.path.join(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\experiments\predicts", 'vgg_SCNN_DULR_w9', parent_path)
+            #print(directory)
+            if not os.path.exists(directory):
+                    os.makedirs(directory)
+            file_exist = open(os.path.join(directory, os.path.basename(filename)[:-3] + 'exist.txt'), 'w')
+            for cnt_img in range(1):
+              cv2.imwrite(os.path.join(directory, os.path.basename(filename)[:-4] + '_' + str(cnt_img + 2) + '_avg.png'),L)
+              cv2.imwrite(os.path.join(directory, os.path.basename(filename)[:-4] + '_' + str(cnt_img + 3) + '_avg.png'),R)
+            file_exist.write('0 ')
+            if ones_or_zeros_for_Right()==True:
+                file_exist.write('1 ')
+            else:
+                file_exist.write('0 ')
+            if ones_or_zeros_for_Left()==True:
+                file_exist.write('1 ')
+            else:
+                file_exist.write('0 ')
+            file_exist.write('0 ')
+            file_exist.close()
+    
+def choose():
+    clearFrame(win)
+    root.title("CV vs DL")
+    root.iconbitmap(r'C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\GUI\image.ico')
+    root.geometry("1200x700")    
+    global win1
+    win1=Frame(root)
+    global llm
+    llm=Label(win1,image=p1)
+    b4=Button(llm,text="Image",height=2,width=15,compound=CENTER,font=(25),bd=10,bg="white",fg="black",command=image)
+    b1=Button(llm,text="Video",height=2,width=15,compound=CENTER,font=(25),bd=10,bg="white",fg="black",command=None)
+    b4.place(x=400,y=200)
+    b1.place(x=650,y=200)
     b5=Button(llm,text="Exit",command=root.destroy,height=2,width=15,font=(25),bd=15,bg="#ff0000",fg="black")
     b5.place(x=1000,y=600)
     b6=Button(llm,text="Back",command=BACK,height=2,width=15,font=(25),bd=15,bg="blue",fg="ivory2")
     b6.place(x=0,y=0)
     llm.pack( fill=BOTH, expand=True)
     win1.pack(fill=BOTH, expand=True)
-
+    
 global root
 root = Tk()
 root.title(" Lane line detection ")
@@ -249,10 +311,12 @@ p2 = PhotoImage(file=r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Ten
 p1 = PhotoImage(file=r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\GUI\3333.png")
 b1=Button(lm,text="Computer Vision",height=2,width=15,compound=CENTER,font=('TimesNewRoman', 14, 'bold'),bd=10,bg="SteelBlue1",fg="black",command=switch)
 b2=Button(lm,text="Deep Learning",height=2,width=15,compound=CENTER,font=('TimesNewRoman', 14, 'bold'),bd=10,bg="SteelBlue1",fg="black",command=switch2)
+b4=Button(lm,text="Compare",height=2,width=15,compound=CENTER,font=('TimesNewRoman', 14, 'bold'),bd=10,bg="SteelBlue1",fg="black",command=choose)
 b1.place(x=200,y=300)
 b2.place(x=800,y=300)
+b4.place(x=500,y=400)
 b3=Button(lm,text="Exit",command=root.destroy,height=2,width=15,font=('TimesNewRoman', 14, 'bold'),bd=15,bg="SteelBlue4",fg="black")
-b3.place(x=475,y=500)
+b3.place(x=950,y=600)
 win.pack(fill=BOTH, expand=True)
 root.resizable(0, 0)
 root.mainloop()
