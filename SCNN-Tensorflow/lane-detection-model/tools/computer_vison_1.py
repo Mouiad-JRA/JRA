@@ -1,4 +1,3 @@
-
 from tkinter import *
 #import imageio
 from tkinter import ttk
@@ -14,6 +13,7 @@ import test_lanenet as t
 from time import sleep
 import CVvsDL as CD
 import matplotlib.pyplot as plt
+
 def create_video(path):
     img_array = []
     for filename in path:
@@ -117,15 +117,15 @@ def vi_DL(filename):
 def fileDialog2():
         
         filename = filedialog.askopenfilename( filetype =
-        (("jpg files","*.mp4"),("all files","*.*")) )
+        (("mp4 files","*.mp4"),("all files","*.*")) )
         if filename!="":
             vi_DL(filename)
             DL()
-x,y,z,w=t.getting()  
+
 def DL():
   
     #x,y,z,w=t.getting()
-    t.init(x,y,z,w)
+    t.init()
     import main1 as m 
     #sleep(20)
     #from main1 import * 
@@ -149,18 +149,20 @@ def im_DL(filename):
 def fileDialog3():
         filename = filedialog.askopenfilename( filetype =
         (("jpg files","*.jpg"),("all files","*.*")) )
+        name=filename[-8:]
         if filename!="":
             im_DL(filename)
             sleep(5)
             DLL()
-            
+            dl=r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\Visual_output\Dl\image\\"+name
+            img=cv2.imread(dl)
+            plt.imshow(img)  
         
 def DLL():
-    t.init(x,y,z,w)
+    t.init()
     import main1 as m 
-    dl=r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\Visual_output\Dl\image\\"+name1
-    img=cv2.imread(dl)
-    plt.imshow(img)  
+    
+
     
 def clearFrame(frame):
     # destroy all widgets from frame
@@ -245,6 +247,8 @@ def switch2():
 def image():
         filename = filedialog.askopenfilename( filetype =
         (("jpg files","*.jpg"),("all files","*.*")) )
+        global name1
+        name1=filename[-8:]
         C,D=CD.comper(filename)
         DLL()
         CV=cv2.imread(C)

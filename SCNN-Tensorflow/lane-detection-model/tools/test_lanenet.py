@@ -103,9 +103,8 @@ def test_lanenet(image_path, weights_path, use_gpu, image_list, batch_size, save
                 file_exist.close()
     sess.close()
     return
-def getting():
-    return argv[2],argv[4],argv[6],argv[8]
-def init(wp,ip,ug,sd):
+
+def init():
 #if __name__ == '__main__':
     # init args
     args = init_args()
@@ -114,14 +113,13 @@ def init(wp,ip,ug,sd):
         log.error('{:s} not exist and has been made'.format(args.save_dir))
         os.makedirs(args.save_dir)
 
-    sd = os.path.join(args.image_path, 'predicts')
+    save_dir = os.path.join(args.image_path, 'predicts')
     if args.save_dir is not None:
-        sd = args.save_dir
+        save_dir = args.save_dir
 
     img_name = []
     with open(str(args.image_path), 'r') as g:
         for line in g.readlines():
             img_name.append(line.strip())
 
-    test_lanenet(ip, wp, ug, img_name, args.batch_size, sd)
-    #cv2.waitKey()
+    test_lanenet(args.image_path, args.weights_path, args.use_gpu, img_name, args.batch_size, save_dir)
