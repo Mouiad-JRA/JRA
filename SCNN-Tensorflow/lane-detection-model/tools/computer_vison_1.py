@@ -138,8 +138,8 @@ def im_DL(filename):
             file=open(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\demo_file\test_img.txt","w")
             image_name="../"+filename[86:]
             image_name2=filename[97:]
-            global name1
-            name1=filename[-8:]
+            print(image_name2)
+            print(image_name)
             file2=open(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\data\CULane\list\test.txt","w")
             file.write(image_name)
             file2.writelines(image_name2)
@@ -259,7 +259,8 @@ def image():
         plt.imshow(CV)
         ax1=fig.add_subplot(1, 2, 2)
         ax1.set_title('Deep Learning')
-        plt.imshow(DL)
+        dl=cv2.cvtColor(DL, cv2.COLOR_BGR2RGB)
+        plt.imshow(dl)
         plt.show()
         
     
