@@ -112,7 +112,7 @@ def vi_DL(filename):
                         image_name2=line[97:]
                         file2.writelines(image_name2)
                         #print(image_name2)
-            sleep(5)        
+            #sleep(5)        
 
 def fileDialog2():
         
@@ -138,8 +138,8 @@ def im_DL(filename):
             file=open(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\demo_file\test_img.txt","w")
             image_name="../"+filename[86:]
             image_name2=filename[97:]
-            print(image_name2)
-            print(image_name)
+            #print(image_name2)
+            #print(image_name)
             file2=open(r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\data\CULane\list\test.txt","w")
             file.write(image_name)
             file2.writelines(image_name2)
@@ -152,11 +152,12 @@ def fileDialog3():
         name=filename[-8:]
         if filename!="":
             im_DL(filename)
-            sleep(5)
+            #sleep(5)
             DLL()
             dl=r"C:\Users\Mouiad\Desktop\Codes-for-Lane-Detection\SCNN-Tensorflow\lane-detection-model\Visual_output\Dl\image\\"+name
             img=cv2.imread(dl)
-            plt.imshow(img)  
+            img1= cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            plt.imshow(img1)  
         
 def DLL():
     t.init()
