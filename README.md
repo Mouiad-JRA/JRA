@@ -196,6 +196,6 @@ We are looking forward to even more challenging projects that stretch our knowle
  [Learning OpenCV 3](https://www.oreilly.com/library/view/learning-opencv-3/9781491937983)
   <br/>
   </br>
- [Udacity Advance Lane-Detection of the Road in Autonomous Driving](https://mc.ai/udacity-advance-lane-detection-of-the-road-in-autonomous-driving)
+ [Udacity Advance Lane Detection of the Road in Autonomous Driving](https://mc.ai/udacity-advance-lane-detection-of-the-road-in-autonomous-driving)
   <br/>
   </br>
